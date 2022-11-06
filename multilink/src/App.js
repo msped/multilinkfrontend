@@ -10,7 +10,9 @@ function App() {
   return (
     <ThemeProvider theme={CustomTheme()}>
       <CssBaseline />
-      <Route path="/" element={<Home />}/>
+      <Routes>
+        <Route path="/" element={<Home />}/>
+      </Routes>
     </ThemeProvider>
   );
 }
