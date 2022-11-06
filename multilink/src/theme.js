@@ -1,4 +1,4 @@
-import { createTheme, responsiveFontSize } from '@mui/material';
+import { createTheme, responsiveFontSizes } from '@mui/material';
 
 export default function CustomTheme(){
     const theme = createTheme({
@@ -53,5 +53,5 @@ export default function CustomTheme(){
           },
     })
 
-    return responsiveFontSize(theme)
+    return responsiveFontSizes(theme)
 }
