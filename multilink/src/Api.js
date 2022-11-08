@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-    baseURL: 'https://localhost:8000/api',
+    baseURL: 'http://localhost:8000/api',
     headers: {
         Authorization: localStorage.getItem('access_token')
             ? 'JWT ' + localStorage.getItem('access_token')
@@ -29,7 +29,7 @@ API.interceptors.response.use(
 
 		if (
 			error.response.status === 401 &&
-			originalRequest.url === 'https://localhost:8000/api/auth/jwt/refresh/'
+			originalRequest.url === 'http://localhost:8000/api/auth/jwt/refresh/'
 		) {
 			window.location.href = '/';
 			return Promise.reject(error);
