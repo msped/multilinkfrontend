@@ -1,13 +1,15 @@
 import API from '../Api'
-import React from 'react'
+import React, { useState } from 'react'
 import { 
     Box,
     TextField,
-    Button
+    Button,
+    Snackbar,
 } from '@mui/material'
 import { useNavigate } from "react-router-dom";
 
 export default function SignIn() {
+    const [open, setOpen] = useState(false)
     let navigate = useNavigate();
 
     const handleSubmit = (event) => {
@@ -15,6 +17,7 @@ export default function SignIn() {
         const data = new FormData(event.currentTarget);
         API.post('/auth/users/', {data}).then( res => {
             navigate("/")
+            setOpen(true);
         })
     };
 
@@ -27,6 +30,11 @@ export default function SignIn() {
                 alignItems: 'center',
             }}
         >
+            <Snackbar
+                open={open}
+                autoHideDuration={6000}
+                message="You account has been register, you can now sign in."
+            />
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
                 <TextField
                     margin="normal"
