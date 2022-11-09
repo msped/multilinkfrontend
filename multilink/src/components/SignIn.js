@@ -13,7 +13,7 @@ export default function SignIn() {
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        API.post('/api/auth/users/', {data}).then( res => {
+        API.post('/auth/jwt/create/', data).then( res => {
             navigate("/")
         })
     };
