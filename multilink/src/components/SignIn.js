@@ -14,6 +14,10 @@ export default function SignIn() {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         API.post('/auth/jwt/create/', data).then( res => {
+            localStorage.setItem('access', res.data.access)
+            localStorage.setItem('refresh', res.data.refresh)
+            API.defaults.headers['Authorization'] =
+                'JWT ' + localStorage.getItem('acess')
             navigate("/")
         })
     };
