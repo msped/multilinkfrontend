@@ -3,8 +3,8 @@ import axios from 'axios';
 const API = axios.create({
     baseURL: 'http://localhost:8000/api',
     headers: {
-        Authorization: localStorage.getItem('access_token')
-            ? 'JWT ' + localStorage.getItem('access_token')
+        Authorization: localStorage.getItem('access')
+            ? 'JWT ' + localStorage.getItem('access')
             : null,
         'Content-Type': 'application/json',
         accept: 'application/json',
@@ -40,7 +40,7 @@ API.interceptors.response.use(
 			error.response.status === 401 &&
 			error.response.statusText === 'Unauthorized'
 		) {
-			const refreshToken = localStorage.getItem('refresh_token');
+			const refreshToken = localStorage.getItem('refresh');
 
 			if (refreshToken) {
 				const tokenParts = JSON.parse(atob(refreshToken.split('.')[1]));
@@ -53,8 +53,8 @@ API.interceptors.response.use(
 					return API
 						.post('/auth/jwt/refresh/', { refresh: refreshToken })
 						.then((response) => {
-							localStorage.setItem('access_token', response.data.access);
-							localStorage.setItem('refresh_token', response.data.refresh);
+							localStorage.setItem('access', response.data.access);
+							localStorage.setItem('refresh', response.data.refresh);
 
 							API.defaults.headers['Authorization'] =
 								'JWT ' + response.data.access;
