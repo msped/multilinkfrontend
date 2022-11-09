@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router-dom'
 
 import CustomTheme from './theme';
 
-import Home from './pages/Home.js'
+import Home from './pages/Home'
 
 function App() {
   return (
