@@ -17,7 +17,7 @@ export default function SignIn() {
             localStorage.setItem('access', res.data.access)
             localStorage.setItem('refresh', res.data.refresh)
             API.defaults.headers['Authorization'] =
-                'JWT ' + localStorage.getItem('acess')
+                'JWT ' + localStorage.getItem('access')
             navigate("/")
         })
     };
