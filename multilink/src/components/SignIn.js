@@ -16,9 +16,10 @@ export default function SignIn() {
         API.post('/auth/jwt/token/', data).then( res => {
             localStorage.setItem('access', res.data.access)
             localStorage.setItem('refresh', res.data.refresh)
+            localStorage.setItem('user', res.data.username)
             API.defaults.headers['Authorization'] =
                 'JWT ' + localStorage.getItem('access')
-            navigate("/profile")
+            navigate(`/${res.data.username}`)
         })
     };
 
