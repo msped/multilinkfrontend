@@ -21,7 +21,7 @@ export default function RedirectRoute({ children }) {
             })
         }
         verify()
-    }, [])
+    }, [jwt])
 
     return verified ? children : <Navigate to={`/${localStorage.getItem('user')}`} />
 }
