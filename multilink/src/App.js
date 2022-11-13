@@ -4,8 +4,6 @@ import { Route, Routes } from 'react-router-dom'
 
 import CustomTheme from './theme';
 
-import RedirectRoute from './Routes/RedirectRoute'
-
 import Home from './pages/Home'
 import Profile from './pages/Profile'
 
@@ -14,16 +12,8 @@ function App() {
     <ThemeProvider theme={CustomTheme()}>
       <CssBaseline />
       <Routes>
-        <Route path="/" element={
-        <RedirectRoute>
-          <Home />
-        </RedirectRoute>
-        }/>
-        <Route path="/:username" element={
-          <RedirectRoute>
-            <Profile />
-          </RedirectRoute>
-        }/>
+        <Route path="/" element={<Home />}/>
+        <Route path="/:username" element={<Profile />}/>
       </Routes>
     </ThemeProvider>
   );
