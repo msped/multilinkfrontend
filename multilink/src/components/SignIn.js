@@ -13,7 +13,7 @@ export default function SignIn() {
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        API.post('/auth/jwt/create/', data).then( res => {
+        API.post('/auth/jwt/token/', data).then( res => {
             localStorage.setItem('access', res.data.access)
             localStorage.setItem('refresh', res.data.refresh)
             API.defaults.headers['Authorization'] =
