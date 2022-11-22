@@ -12,7 +12,8 @@ export default function SignIn() {
         apiClient.post("/auth/jwt/token/", data).then((res) => {
             localStorage.setItem("access", res.data.access);
             localStorage.setItem("refresh", res.data.refresh);
-            localStorage.setItem("user", res.data.username);
+            localStorage.setItem("username", res.data.username);
+            localStorage.setItem("userId", res.data.username);
             apiClient.defaults.headers["Authorization"] =
                 "JWT " + localStorage.getItem("access");
             navigate(`/${res.data.username}`);
