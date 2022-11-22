@@ -6,6 +6,7 @@ import CustomTheme from "./theme";
 
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
+import UserProfile from "./pages/UserProfile";
 
 function App() {
     return (
@@ -14,6 +15,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/me" element={<Profile />} />
+                <Route path="/:username" element={<UserProfile />} />
             </Routes>
         </ThemeProvider>
     );
