@@ -16,7 +16,7 @@ export default function SignIn() {
             localStorage.setItem("userId", res.data.username);
             apiClient.defaults.headers["Authorization"] =
                 "JWT " + localStorage.getItem("access");
-            navigate(`/${res.data.username}`);
+            navigate("/me");
         });
     };
 
