@@ -7,6 +7,7 @@ import CustomTheme from "./theme";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import UserProfile from "./pages/UserProfile";
+import Logout from "./pages/Logout";
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/me" element={<Profile />} />
                 <Route path="/:username" element={<UserProfile />} />
+                <Route path="/logout" element={<Logout />} />
             </Routes>
         </ThemeProvider>
     );
