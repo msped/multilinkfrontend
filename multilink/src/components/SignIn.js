@@ -13,7 +13,7 @@ export default function SignIn() {
             localStorage.setItem("access", res.data.access);
             localStorage.setItem("refresh", res.data.refresh);
             localStorage.setItem("username", res.data.username);
-            localStorage.setItem("userId", res.data.username);
+            localStorage.setItem("userId", res.data.user_id);
             apiClient.defaults.headers["Authorization"] =
                 "JWT " + localStorage.getItem("access");
             navigate("/me");
