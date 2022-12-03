@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API = axios.create({
+const apiClient = axios.create({
     baseURL: 'http://localhost:8000/api',
     headers: {
         Authorization: localStorage.getItem('access')
@@ -11,7 +11,7 @@ const API = axios.create({
     }
 })
 
-API.interceptors.response.use(
+apiClient.interceptors.response.use(
 	(response) => {
 		return response;
 	},
@@ -50,18 +50,18 @@ API.interceptors.response.use(
 				console.log(tokenParts.exp);
 
 				if (tokenParts.exp > now) {
-					return API
+					return apiClient
 						.post('/auth/jwt/refresh/', { refresh: refreshToken })
 						.then((response) => {
 							localStorage.setItem('access', response.data.access);
 							localStorage.setItem('refresh', response.data.refresh);
 
-							API.defaults.headers['Authorization'] =
+							apiClient.defaults.headers['Authorization'] =
 								'JWT ' + response.data.access;
 							originalRequest.headers['Authorization'] =
 								'JWT ' + response.data.access;
 
-							return API(originalRequest);
+							return apiClient(originalRequest);
 						})
 						.catch((err) => {
 							console.log(err);
@@ -81,4 +81,4 @@ API.interceptors.response.use(
 	}
 );
 
-export default API;
+export default apiClient;

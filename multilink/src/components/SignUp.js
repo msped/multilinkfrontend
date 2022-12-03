@@ -1,33 +1,28 @@
-import API from '../Api'
-import React, { useState } from 'react'
-import { 
-    Box,
-    TextField,
-    Button,
-    Snackbar,
-} from '@mui/material'
+import apiClient from "../api/apiClient";
+import React, { useState } from "react";
+import { Box, TextField, Button, Snackbar } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 export default function SignIn() {
-    const [open, setOpen] = useState(false)
+    const [open, setOpen] = useState(false);
     let navigate = useNavigate();
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        API.post('/auth/users/', {data}).then( res => {
-            navigate("/")
+        apiClient.post("/auth/users/", { data }).then((res) => {
+            navigate("/");
             setOpen(true);
-        })
+        });
     };
 
-    return (            
+    return (
         <Box
             sx={{
                 mx: 4,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
             }}
         >
             <Snackbar
@@ -35,7 +30,12 @@ export default function SignIn() {
                 autoHideDuration={6000}
                 message="You account has been register, you can now sign in."
             />
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+            <Box
+                component="form"
+                noValidate
+                onSubmit={handleSubmit}
+                sx={{ mt: 1 }}
+            >
                 <TextField
                     margin="normal"
                     required
@@ -85,5 +85,5 @@ export default function SignIn() {
                 </Button>
             </Box>
         </Box>
-    )
+    );
 }
